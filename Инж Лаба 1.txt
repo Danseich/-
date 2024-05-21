@@ -1,0 +1,97 @@
+# # 1
+# def arithmetic_operation(s):
+#     def tool(a, b):
+#         if s == "+":
+#             return a + b
+#         elif s == "-":
+#             return a - b
+#         elif s == "*":
+#             return a * b
+#         elif s == "/":
+#             return a / b
+#
+#     return tool
+#
+#
+# operation = arithmetic_operation(input())
+#
+# print(operation(int(input()), int(input())))
+#
+# # 2
+#
+# def simpl_map(op, vl):
+#     m = []
+#     for i in vl:
+#         i = op(i)
+#         m.append(i)
+#     return m
+#
+#
+# value = [1, 2, 3, 4, 5]
+#
+# operator = lambda x: x * x
+#
+# print (simpl_map(operator, value))
+#
+# # 3
+#
+# RomanNumbers = {"M": 1000, "CM": 900, "D": 500, "CD": 400,
+#                 "C": 100, "XC": 90, "L": 50, "XL": 40,
+#                 "X": 10, "IX": 9, "V": 5, "IV": 4, "III": 3, "II": 2, "I": 1}
+#
+# def rome_it(n):
+#     res = ""
+#     for i in RomanNumbers:
+#         if n // RomanNumbers[i] > 0:
+#             res = res + i
+#             n -= RomanNumbers[i]
+#     return res
+#
+# one = 1
+#
+# two = 2
+#
+#
+# def roman():
+#     global three
+#     three = one + two
+#     print(rome_it(one), " + ", rome_it(two), " = ", rome_it(three))
+#     return None
+#
+# roman()
+#
+# 4
+#
+# data4 = {}
+#
+# def get_transaction(arg):
+#     if arg == "print_it":
+#         for i in data4:
+#             print(f"{data4[i][0]} {i} {data4[i][1]}")
+#     else:
+#         st = arg.find("-")+1
+#         en = arg.find(":")
+#         key = arg[st:en]
+#         if key in data4:
+#             data4[key][0] += 1
+#             data4[key][1] += int(arg[en+1:])
+#         else:
+#             data4[key] = [1, int(arg[en+1:])]
+#
+# get_transaction("10000000-перевод:200")
+# get_transaction("11000000-оплата:200")
+# get_transaction("12000000-перевод:100")
+# get_transaction("print_it")
+# 5
+
+# def same_by(characteristic, objects):
+#     a = characteristic(objects[0])
+#     for i in objects:
+#         if characteristic(i) != a:
+#             return False
+#     return True
+# 
+# 
+# print(same_by(lambda x: x % 2, [1, 3, 5]))
+# print(same_by(lambda x: x % 2, [1, 3, 6]))
+

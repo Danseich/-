@@ -1,0 +1,323 @@
+﻿import math
+
+# # 1
+#
+# class Rectangle:
+#     def __init__(self, x, y, w, h):
+#         self.x = x
+#         self.y = y
+#         self.w = w
+#         self.h = h
+#         self.x2 = x + w
+#         self.y2 = y + h
+#
+#     def get_x(self):
+#         return self.x
+#
+#     def get_y(self):
+#         return self.y
+#
+#     def get_h(self):
+#         return self.h
+#
+#     def get_w(self):
+#         return self.w
+#
+#     def get_x2(self):
+#         return self.x2
+#
+#     def get_y2(self):
+#         return self.y2
+#
+#     def intersection(self, rect):
+#         xi = max(self.x, rect.x)
+#         yi = max(self.y, rect.y)
+#         x2i = min(self.x2, rect.x2)
+#         y2i = min(self.y2, rect.y2)
+#
+#         if xi < x2i and yi < y2i:
+#             return Rectangle(xi, yi, x2i - xi, y2i - yi)
+#         else:
+#             return None
+#
+#
+# a = Rectangle(0, 0, 10, 10)
+# b = Rectangle(5, 5, 10, 10)
+# b0 = Rectangle(100, 100, 10, 10)
+# c = a.intersection(b)
+# c0 = a.intersection(b0)
+# print(c.x, c.y, c.w, c.h)
+# print(c0)
+
+# # 2
+#
+# class LeftParagraph:
+#     def __init__(self, a):
+#         self.n = a
+#         self.word = " " * a
+#         self.par = []
+#
+#     def add_word(self, dypa):
+#         stuff = ""
+#         for i in range(self.n):
+#             if i < len(dypa):
+#                 stuff += dypa[i]
+#             else:
+#                 stuff += self.word[i]
+#
+#         self.par.append(stuff)
+#
+#     def end(self):
+#         for i in self.par:
+#             print(i)
+#         print("\n")
+#
+#
+# class RightParagraph:
+#     def __init__(self, a):
+#         self.n = a
+#         self.word = " " * a
+#         self.par = []
+#
+#     def add_word(self, dypa):
+#         stuff = ''
+#         a = len(self.word) - len(dypa)
+#         for i in range(a):
+#             stuff += " "
+#         stuff += dypa
+#         self.par.append(stuff)
+#
+#
+#
+#     def end(self):
+#         for i in self.par:
+#             print(i,)
+#         print()
+#
+#
+# lp = LeftParagraph(5)
+# rp = RightParagraph(6)
+#
+# lp.add_word("Toma")
+# lp.add_word("dypa")
+# lp.add_word("haha")
+# lp.add_word("pyp")
+# lp.end()
+#
+# rp.add_word("Toma")
+# rp.add_word("dypa")
+# rp.add_word("haha")
+# rp.add_word("pyp")
+# rp.end()
+
+# # 3
+#
+# class SeaMap:
+#     def __init__(self):
+#         self.m = []
+#         for i in range(10):
+#             a = []
+#             for j in range(10):
+#                 a.append(".")
+#             self.m.append(a)
+#
+#     def shoot(self, row, col, res):
+#         row -= 1
+#         col -= 1
+#         if res == "miss":
+#             self.m[row][col] = "*"
+#         elif res == "hit":
+#             self.m[row][col] = "X"
+#         elif res == "shrink":
+#             self.m[row][col] = "X"
+#             self.m[row-1][col] = "*"
+#             self.m[row][col-1] = "*"
+#             self.m[row+1][col] = "*"
+#             self.m[row][col+1] = "*"
+#             self.m[row+1][col+1] = "*"
+#             self.m[row-1][col-1] = "*"
+#             self.m[row-1][col+1] = "*"
+#             self.m[row+1][col-1] = "*"
+#
+#     def cell(self, row, col):
+#         return self.m[row][col]
+#
+# sm = SeaMap()
+# sm.shoot(3, 3, "miss")
+# sm.shoot(7, 7, "shrink")
+# for i in range(10):
+#     for j in range(10):
+#         print(sm.cell(i, j), end="")
+#     print()
+
+# # 4
+#
+# class BaseCharacter:
+#     def __init__(self, pos_x, pos_y, hp):
+#         self.pos_x = pos_x
+#         self.pos_y = pos_y
+#         self.hp = hp
+#
+#     def move(self, delta_x, delta_y):
+#         self.pos_x += delta_x
+#         self.pos_y += delta_y
+#
+#     def is_alive(self):
+#         if self.hp > 0:
+#             return True
+#         else:
+#             return False
+#
+#     def get_damage(self, amount):
+#         self.hp -= amount
+#
+#     def get_cord(self):
+#         a = (self.pos_x, self.pos_y)
+#         return a
+#
+#
+# class MainHero(BaseCharacter):
+#     def __init__(self, pos_x, pos_y, name, hp):
+#         super().__init__(pos_x, pos_y, hp)
+#         self.name = name
+#         self.inventory = []
+#         self.in_arms = 0
+#         self.weapon = 0
+#
+#     def hit(self, target):
+#         if self.weapon == 0:
+#             print("Я безоружен!")
+#         elif type(target) != BaseEnemy:
+#             print("Я могу ударить только врага!")
+#         else:
+#             return True
+#
+#     def add_weapon(self, weapon):
+#         if type(weapon) != Weapon:
+#             print("Это не оружие!")
+#         else:
+#             if len(self.inventory) == 0:
+#                 self.weapon = weapon
+#                 self.inventory.append(weapon)
+#                 print(f"Подобрал {self.weapon.name}!")
+#             else:
+#                 self.inventory.append(weapon)
+#
+#     def next_weapon(self):
+#         if len(self.inventory) == 0:
+#             print("Я безоружен!")
+#         elif len(self.inventory) == 1:
+#             print("У меня только одно оружие!")
+#         else:
+#             self.in_arms += 1
+#             if self.in_arms > (len(self.inventory) - 1):
+#                 self.in_arms = 0
+#             self.weapon = self.inventory[self.in_arms]
+#             print(f"Сменил оружие на {self.weapon.name}")
+#
+#     def heal(self, amount):
+#         self.hp += amount
+#         if self.hp > 200:
+#             self.hp = 200
+#         print(f"Излечился, теперь здоровье равно {self.hp}")
+#
+#
+#
+#
+#
+#
+#
+# class BaseEnemy(BaseCharacter):
+#     def __init__(self,pos_x, pos_y, weapon, hp):
+#         super().__init__(pos_x, pos_y, hp)
+#         self.weapon = weapon
+#
+#     def hit(self, target):
+#         if type(target) != MainHero:
+#             print("Могу ударить только Главного героя!")
+#         else:
+#             return True
+#
+#
+# class Weapon:
+#     def __init__(self, name, damage, range):
+#         self.name = name
+#         self.damage = damage
+#         self.range = range
+#
+#     def hit(self, actor, target):
+#         if not target.is_alive():
+#             print("Враг уже повержен!")
+#         elif math.sqrt((abs(actor.poz_x - target.poz_x) ** 2) + (abs(actor.poz_y - target.poz_y) ** 2)) > self.range:
+#             print(f"Враг слишком далеко для {self.name}!")
+#         else:
+#             print(f"Врагу нанесен урон оружием {self.name} в размере {self.damage}")
+#             target.get_damage(self.damage)
+#
+#
+# weapon1 = Weapon("Короткий меч", 5, 1)
+# weapon2 = Weapon("Длинный меч", 7, 2)
+# weapon3 = Weapon("Лук", 3, 10)
+# weapon4 = Weapon("Лазерная орбитальная пушка", 1000, 1000)
+# princess = BaseCharacter(100, 100, 100)
+# archer = BaseEnemy(50, 50, weapon3, 100)
+# swordsman = BaseEnemy(10, 10, weapon2, 500)
+# archer.hit(swordsman)
+# swordsman.move(10, 10)
+# print(swordsman.get_cord())
+# main_hero = MainHero(0, 0, "Король Артур", 200)
+# main_hero.hit(swordsman)
+# main_hero.next_weapon()
+# main_hero.add_weapon(weapon1)
+# main_hero.hit(swordsman)
+# main_hero.add_weapon(weapon4)
+# main_hero.hit(swordsman)
+# main_hero.next_weapon()
+# main_hero.hit(princess)
+# main_hero.hit(swordsman)
+# main_hero.hit(swordsman)
+
+# 5
+
+class Server:
+    def __init__(self):
+        self.mails = {}
+
+    def add_mail(self, mail, user):
+        self.mails[mail] = user
+
+    def view_mails(self, name):
+        print(self.mails)
+        buffer = []
+        for i in self.mails:
+            if self.mails[i] == name:
+                print(f"-- {i}")
+                buffer.append(i)
+        while len(buffer) > 0:
+            i = buffer[0]
+            self.mails.pop(i)
+            buffer.pop(0)
+        print(self.mails)
+
+
+
+class User:
+    def __init__(self, name):
+        self.name = name
+
+    def send_mail(self, server, name):
+        server.add_mail(self.name + ": " + input(), name)
+
+    def recive_mail(self, server):
+        server.view_mails(self.name)
+
+
+user1 = User("Petr")
+user2 = User("Oleg")
+server = Server()
+user1.send_mail(server, "Oleg")
+user1.send_mail(server, "Oleg")
+user2.recive_mail(server)
+user2.send_mail(server, "Petr")
+user1.send_mail(server, "Oleg")
+user1.recive_mail(server)
